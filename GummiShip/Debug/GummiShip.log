@@ -1,0 +1,13 @@
+﻿Build started 12/17/2016 1:50:08 AM.
+     1>Project "C:\Users\Victor\Documents\Visual Studio 2013\Projects\GummiShip\GummiShip\GummiShip.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\game.cpp ..\src\main.cpp
+         main.cpp
+     1>c:\users\victor\documents\visual studio 2013\projects\gummiship\src\game.h(6): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+         game.cpp
+         Generating Code...
+     1>Done Building Project "C:\Users\Victor\Documents\Visual Studio 2013\Projects\GummiShip\GummiShip\GummiShip.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:03.59
