@@ -12,7 +12,7 @@ const sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
 class Game {
 private:
 	// Enumeration controls the different states the game goes into.
-	enum GameState { titleScreen, intro, worldSelect, garage,inGame, gameOver, pause } gameState_;
+	enum GameState { titleStart, titleScreen, intro, worldSelect, garage,inGame, gameOver, pause } gameState_;
 
 	bool giveAnother;
 	int atkCount,
@@ -26,18 +26,39 @@ private:
 	sf::RenderWindow window;
 
 	sf::Clock clock;
-	sf::Time deltaTime;
+	sf::Time deltaTime,
+			 gameTime;
 
 	sf::View camera;
 
+	// Fonts for in-game text
+	sf::Font titleFont,
+			 scoreFont;
+
 	// In game text
+	sf::Text scoreText,
+			 pointsText;
 
 	// Game Music
+	sf::Music blast1,
+			  blast2,
+			  blast3,
+			  starsInTheSky,
+			  shipmeister;
 
 	// Game sounds but using music implementation
+	sf::Music whitenoise;
 
 	// Background Pictures
+	sf::Sprite easyBG[2];
 
+	// Game sprites
+	sf::Sprite ship;
+
+	// Sprite textures
+	sf::Texture easyBGTexture,
+				easyBGTexture2,
+				shipTexture;
 
 	// Game mechanic functions
 	void handleEvent(sf::Event &event);
