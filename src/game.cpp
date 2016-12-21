@@ -18,6 +18,7 @@ Game::Game() {
 
 	camera.setCenter(220, 360);
 
+	GummiShip = new Ship();
 	gameState_ = titleScreen;
 
 	loadAssets();
@@ -85,10 +86,10 @@ void Game::handleEvent(sf::Event &event) {
 
 void Game::loadAssets() {
 	// Load game images
-	// Load sprite textures
 	easyBGTexture.loadFromFile("..\\assets\\bg\\easybg.png");
 	easyBGTexture2.loadFromFile("..\\assets\\bg\\easybg2.png");
-	shipTexture.loadFromFile("..\\assets\\sprites\\highwind.png");
+	// Load sprite textures
+	
 	// Load music files
 	blast1.openFromFile("..\\assets\\music\\blastaway1.ogg");
 	blast2.openFromFile("..\\assets\\music\\blastaway2.ogg");
@@ -100,11 +101,11 @@ void Game::loadAssets() {
 	// Load fonts
 	scoreFont.loadFromFile("..\\assets\\fonts\\KHGummiShip.ttf");
 
-	ship.setTexture(shipTexture);
-	ship.setTextureRect(sf::IntRect(1*132, 0, 132, 134));
-	ship.setOrigin(66.f, 132.f);
-	ship.setPosition(220, 700);
-	ship.setScale(sf::Vector2f(0.90f,0.90f));
+	//ship.setTexture(shipTexture);
+	//ship.setTextureRect(sf::IntRect(1*132, 0, 132, 134));
+	//ship.setOrigin(66.f, 132.f);
+	//ship.setPosition(220, 700);
+	//ship.setScale(sf::Vector2f(0.90f,0.90f));
 
 	easyBG[0].setTexture(easyBGTexture);
 	easyBG[0].setOrigin(220.f, -720.f);
@@ -153,20 +154,6 @@ void Game::update() {
 	camera.zoom(1.0);
 	window.setView(camera);
 	if (gameState_ == inGame) {
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-			ship.move(sf::Vector2f(-8.f, 0.f));
-			ship.setTextureRect(sf::IntRect(0, 0, 132, 134));
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-			ship.move(sf::Vector2f(8.f, 0.f));
-			ship.setTextureRect(sf::IntRect(264, 0, 132, 134));
-		}
-		else
-			ship.setTextureRect(sf::IntRect(132, 0, 132, 134));
-		if (ship.getPosition().x < 10)
-			ship.setPosition(5, ship.getPosition().y);
-		else if (ship.getPosition().x > 430)
-			ship.setPosition(435, ship.getPosition().y);
 		easyBG[0].move(sf::Vector2f(0.f, 24.f));
 		easyBG[1].move(sf::Vector2f(0.f, 24.f));
 		for (int i = 0; i < 2; i++)
@@ -187,7 +174,7 @@ void Game::render() {
 			window.draw(easyBG[i]);
 		window.draw(pointsText);
 		window.draw(scoreText);
-		window.draw(ship);
+		GummiShip->update(window);
 		break;
 	default: break;
 	}

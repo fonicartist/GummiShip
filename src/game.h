@@ -7,6 +7,8 @@
 #include <SFML/Audio.hpp>
 #include <string>
 
+#include "ship.h"
+
 const sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
 
 class Game {
@@ -21,6 +23,7 @@ private:
 	double velocity;
 
 	// Game objects
+	Ship *GummiShip;
 
 	// SFML Objects
 	sf::RenderWindow window;
