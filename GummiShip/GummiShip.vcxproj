@@ -73,11 +73,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\src\game.cpp" />
+    <ClCompile Include="..\src\lazer.cpp" />
+    <ClCompile Include="..\src\lazerList.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\ship.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\game.h" />
+    <ClInclude Include="..\src\lazer.h" />
+    <ClInclude Include="..\src\lazerList.h" />
     <ClInclude Include="..\src\ship.h" />
   </ItemGroup>
   <ItemGroup>

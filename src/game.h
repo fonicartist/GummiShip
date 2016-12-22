@@ -7,6 +7,7 @@
 #include <SFML/Audio.hpp>
 #include <string>
 
+#include "lazerList.h"
 #include "ship.h"
 
 const sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
@@ -24,6 +25,7 @@ private:
 
 	// Game objects
 	Ship *GummiShip;
+	LazerList *lazerList;
 
 	// SFML Objects
 	sf::RenderWindow window;

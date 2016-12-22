@@ -4,20 +4,28 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
+#include "lazer.h"
+#include "lazerList.h"
+
 class Ship {
 private:
 	// Ship properties
 	enum Movement {left, still, right} movement_;
+	enum Shot {leftShot, straightShot, rightShot} shot_;
 	int armor,		// Ship Stats
-		HP;
-	int exhaustCounter;		// Animation counter for exhuast
+		HP,
+		lazerguns;
+	// Counters
+	int exhaustCounter,
+		shootCounter;	
 
 	//SFML Variables
 	sf::Sprite exhaust,
 			   sprite;
 	sf::Texture exhaustTexture,
+				lazerTexture,
 				texture;
-	sf::Music lazer,
+	sf::Music lazerSound,
 			  spin,
 			  rocket;
 
@@ -34,7 +42,7 @@ public:
 	~Ship();
 
 	void inputHandler(sf::Event&);
-	void update(sf::RenderWindow&);
+	void update(sf::RenderWindow&, LazerList*);
 
 	// Accessor Methods
 	float getX() {

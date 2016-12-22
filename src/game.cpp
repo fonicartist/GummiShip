@@ -19,6 +19,7 @@ Game::Game() {
 	camera.setCenter(220, 360);
 
 	GummiShip = new Ship();
+	lazerList = new LazerList();
 	gameState_ = titleScreen;
 
 	loadAssets();
@@ -78,6 +79,7 @@ void Game::handleEvent(sf::Event &event) {
 			gameState_ = inGame;
 		break;
 	case inGame:
+		GummiShip->inputHandler(event);
 		break;
 	default: break;
 	}
@@ -116,14 +118,14 @@ void Game::loadAssets() {
 
 	pointsText.setFont(scoreFont);
 	pointsText.setColor(sf::Color(255, 200, 50, 255));
-	pointsText.setCharacterSize(26);
-	pointsText.setPosition(10, 30);
+	pointsText.setCharacterSize(32);
+	pointsText.setPosition(10, 25);
 	pointsText.setStyle(sf::Text::Italic);
 
 	scoreText.setFont(scoreFont);
 	scoreText.setString("SCORE");
 	scoreText.setColor(sf::Color(255, 135, 0, 255));
-	scoreText.setCharacterSize(16);
+	scoreText.setCharacterSize(20);
 	scoreText.setPosition(10, 6);
 	scoreText.setStyle(sf::Text::Italic);
 
@@ -172,9 +174,10 @@ void Game::render() {
 	case inGame:
 		for (int i = 0; i < 2; i++)
 			window.draw(easyBG[i]);
+		lazerList->update(window);
+		GummiShip->update(window, lazerList);
 		window.draw(pointsText);
 		window.draw(scoreText);
-		GummiShip->update(window);
 		break;
 	default: break;
 	}
