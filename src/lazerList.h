@@ -28,6 +28,7 @@ public:
 	~LazerList();
 
 	void add(Lazer*);
+	bool checkCollision(float, float, float, float);
 
 	int getSize() {
 		return listSize;

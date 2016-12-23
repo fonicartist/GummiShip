@@ -7,6 +7,7 @@
 #include <SFML/Audio.hpp>
 #include <string>
 
+#include "enemy.h"
 #include "lazerList.h"
 #include "ship.h"
 
@@ -26,6 +27,7 @@ private:
 	// Game objects
 	Ship *GummiShip;
 	LazerList *lazerList;
+	Enemy *enemy;
 
 	// SFML Objects
 	sf::RenderWindow window;

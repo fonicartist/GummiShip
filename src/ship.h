@@ -57,7 +57,6 @@ public:
 	void setY(float val) {
 		sprite.setPosition(getX(), val);
 	};
-
 };
 
 #endif

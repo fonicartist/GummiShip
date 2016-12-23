@@ -6,6 +6,7 @@
 
 class Lazer {
 private:
+	bool hit;
 	int dmg;
 	sf::Vector2f velocity;
 
@@ -31,6 +32,13 @@ public:
 	};
 	void setY(float val) {
 		sprite.setPosition(getX(), val);
+	};
+
+	void changeHit() {
+		hit = true;
+	};
+	bool isHit() {
+		return hit;
 	};
 
 	sf::Sprite getSprite() {

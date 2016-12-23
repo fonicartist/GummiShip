@@ -3,6 +3,7 @@
 Lazer::Lazer(float pos, float x, float y, int direction) {
 	sprite.setPosition(pos, 640);
 	velocity = sf::Vector2f(x, y);
+	hit = false;
 	printf("New lazer created at (%d,%d).\n", pos,700);
 	loadAssets(direction);
 }
@@ -21,6 +22,7 @@ void Lazer::loadAssets(int direction) {
 void Lazer::update() {
 	if (getY() > -100)
 		sprite.move(velocity);
+		
 }
 
 Lazer::~Lazer() {

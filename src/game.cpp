@@ -9,7 +9,7 @@ using namespace std;
  ************************************************/
 Game::Game() {
 	// Create game render window
-	window.create(sf::VideoMode(440, 720), "Gummi Ship");
+	window.create(sf::VideoMode(528, 864), "Gummi Ship");
 	window.setMouseCursorVisible(true);
 	window.setKeyRepeatEnabled(false);
 
@@ -20,6 +20,7 @@ Game::Game() {
 
 	GummiShip = new Ship();
 	lazerList = new LazerList();
+	enemy = new Enemy();
 	gameState_ = titleScreen;
 
 	loadAssets();
@@ -40,6 +41,9 @@ void Game::mainLoop() {
 		deltaTime += elapsedTime;
 		if (gameState_ == inGame)
 			gameTime += elapsedTime;
+
+		if ((int)(gameTime.asSeconds() * 17) % 50 == 0 && enemy == NULL)
+			enemy = new Enemy();
 
 		while (deltaTime > TimePerFrame) {
 			// Reset deltaTime
@@ -174,6 +178,13 @@ void Game::render() {
 	case inGame:
 		for (int i = 0; i < 2; i++)
 			window.draw(easyBG[i]);
+		if (enemy != NULL)
+			if (enemy->getHP() != 0)
+				enemy->update(window, lazerList);
+			else {
+				delete enemy;
+				enemy = NULL;
+			}
 		lazerList->update(window);
 		GummiShip->update(window, lazerList);
 		window.draw(pointsText);

@@ -8,6 +8,27 @@ LazerList::LazerList() {
 
 }
 
+bool LazerList::checkCollision(float x1, float x2, float y1, float y2) {
+	node* nodePtr;
+	
+	if (head != NULL) {
+		nodePtr = head;
+		while (nodePtr != NULL) {
+			printf("Starting check on collision with list.\n");
+			if (nodePtr->lazer->getY() < y2 && nodePtr->lazer->getY() > y1)
+				if (nodePtr->lazer->getX() < x2 && nodePtr->lazer->getX() > x1)
+				{
+					nodePtr->lazer->changeHit();
+					printf("Lazer made contact with enemy!\n");
+					return true;
+				}
+			nodePtr = nodePtr->next;
+		}
+	}
+	return false;
+
+}
+
 void LazerList::add(Lazer* lazer) {
 	node *newNode = new node;
 	node *nodePtr;
@@ -51,7 +72,7 @@ void LazerList::pop() {
 		printf("Head is not empty. Popping nodes.\n");
 		nodePtr = head;
 		while (nodePtr != NULL)
-			if (nodePtr->lazer->getY() < -100) {
+			if (nodePtr->lazer->getY() < -100 || nodePtr->lazer->isHit()) {
 				printf("Deleting node.\n");
 				nextPtr = nodePtr->next;
 				head = nodePtr->next;
@@ -83,7 +104,7 @@ void LazerList::update(sf::RenderWindow& window) {
 	}
 	nodePtr = head;
 	if (nodePtr != NULL)
-		if (nodePtr->lazer->getY() < -100)
+		if (nodePtr->lazer->getY() < -100 || nodePtr->lazer->isHit())
 			pop();
 	
 
