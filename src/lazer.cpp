@@ -12,8 +12,8 @@ void Lazer::loadAssets(int direction) {
 	texture.loadFromFile("..\\assets\\sprites\\lazer.png");
 
 	sprite.setTexture(texture);
-	sprite.setTextureRect(sf::IntRect(132*direction, 0, 132, 83));
-	sprite.setOrigin(66.f, 0.f);
+	sprite.setTextureRect(sf::IntRect(25*direction, 0, 25, 53));
+	sprite.setOrigin(13.f, 0.f);
 	//sprite.setPosition(220, -60);
 	sprite.setScale(sf::Vector2f(0.90f, 0.90f));
 

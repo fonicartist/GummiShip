@@ -43,7 +43,9 @@ private:
 			 scoreFont;
 
 	// In game text
-	sf::Text scoreText,
+	sf::Text titleText,
+			 pressText,
+			 scoreText,
 			 pointsText;
 
 	// Game Music

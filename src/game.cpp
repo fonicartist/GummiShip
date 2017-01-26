@@ -120,17 +120,33 @@ void Game::loadAssets() {
 	easyBG[1].setOrigin(220.f, -720.f);
 	easyBG[1].setPosition(220, -17280);
 
+	titleText.setFont(scoreFont);
+	titleText.setColor(sf::Color(255, 255, 255, 255));
+	titleText.setCharacterSize(25);
+	titleText.setStyle(sf::Text::Italic);
+	titleText.setString("Kingdom Hearts\nGummi Ship Run");
+	titleText.setOrigin(titleText.getGlobalBounds().width / 2, 0);
+	titleText.setPosition(220, 210);
+
+	pressText.setFont(scoreFont);
+	pressText.setColor(sf::Color(240, 200, 50, 255));
+	pressText.setCharacterSize(20);
+	pressText.setStyle(sf::Text::Italic);
+	pressText.setString("[Press Enter]");
+	pressText.setOrigin(titleText.getGlobalBounds().width / 2, 0);
+	pressText.setPosition(276, 350);
+
 	pointsText.setFont(scoreFont);
 	pointsText.setColor(sf::Color(255, 200, 50, 255));
-	pointsText.setCharacterSize(32);
-	pointsText.setPosition(10, 25);
+	pointsText.setCharacterSize(28);
+	pointsText.setPosition(10, 50);
 	pointsText.setStyle(sf::Text::Italic);
 
 	scoreText.setFont(scoreFont);
 	scoreText.setString("SCORE");
 	scoreText.setColor(sf::Color(255, 135, 0, 255));
-	scoreText.setCharacterSize(20);
-	scoreText.setPosition(10, 6);
+	scoreText.setCharacterSize(18);
+	scoreText.setPosition(10, 15);
 	scoreText.setStyle(sf::Text::Italic);
 
 }
@@ -175,6 +191,10 @@ void Game::render() {
 	window.clear();
 
 	switch (gameState_) {
+	case titleScreen:
+		window.draw(titleText);
+		window.draw(pressText);
+		break;
 	case inGame:
 		for (int i = 0; i < 2; i++)
 			window.draw(easyBG[i]);
