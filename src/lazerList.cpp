@@ -14,7 +14,7 @@ bool LazerList::checkCollision(float x1, float x2, float y1, float y2) {
 	if (head != NULL) {
 		nodePtr = head;
 		while (nodePtr != NULL) {
-			printf("Starting check on collision with list.\n");
+			//printf("Starting check on collision with list.\n");
 			if (nodePtr->lazer->getY() < y2 && nodePtr->lazer->getY() > y1)
 				if (nodePtr->lazer->getX() < x2 && nodePtr->lazer->getX() > x1)
 				{

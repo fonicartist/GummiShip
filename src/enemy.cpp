@@ -1,7 +1,7 @@
 #include "enemy.h"
 
 Enemy::Enemy() {
-	HP = 2;
+	HP = 6;
 	loadAssets();
 }
 
@@ -25,7 +25,7 @@ void Enemy::update(sf::RenderWindow& window, LazerList* lazerList) {
 		HP--;
 	}
 	
-	printf("%i, %i, %i, %i\n", leftx, rightx, topy, bottomy);
+	//printf("%i, %i, %i, %i\n", leftx, rightx, topy, bottomy);
 	render(window);
 
 }
