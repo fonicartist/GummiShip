@@ -12,8 +12,8 @@ using namespace std;
  *************************************/
 int main() {
 	// Hide debug console
-	//HWND hWnd = GetConsoleWindow();
-	//ShowWindow(hWnd, SW_HIDE);
+	HWND hWnd = GetConsoleWindow();
+	ShowWindow(hWnd, SW_HIDE);
 	// Create a game object then start its loop.
 	Game game;
 	game.mainLoop();

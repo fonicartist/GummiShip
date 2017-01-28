@@ -27,7 +27,7 @@ private:
 	// Game objects
 	Ship *GummiShip;
 	LazerList *lazerList;
-	Enemy *enemy;
+	Enemy *enemy[8];
 
 	// SFML Objects
 	sf::RenderWindow window;
@@ -46,7 +46,8 @@ private:
 	sf::Text titleText,
 			 pressText,
 			 scoreText,
-			 pointsText;
+			 pointsText,
+			 GOText;
 
 	// Game Music
 	sf::Music blast1,
@@ -81,6 +82,7 @@ private:
 	void velocityUpdate();
 	void update();
 	void render();
+	void reset();
 
 public:
 	Game();

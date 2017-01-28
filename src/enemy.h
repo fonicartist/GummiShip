@@ -8,20 +8,21 @@
 
 class Enemy {
 private:
-	int HP;
+	int HP,
+		direction;
 
 	sf::Sprite sprite;
 	sf::Texture texture;
 	sf::RectangleShape shape;
 
-	void loadAssets();
+	void loadAssets(int, int);
 	void render(sf::RenderWindow&);
 
 public:
-	Enemy();
+	Enemy(int, int);
 	~Enemy();
 	
-	void update(sf::RenderWindow&, LazerList*);
+	void update(sf::RenderWindow&, LazerList*, int&);
 
 	// Accessor Methods
 	int getHP() {

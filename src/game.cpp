@@ -20,8 +20,9 @@ Game::Game() {
 
 	GummiShip = new Ship();
 	lazerList = new LazerList();
-	enemy = new Enemy();
+	enemy[0] = new Enemy(0, 0);
 	gameState_ = titleScreen;
+	points = 0;
 
 	loadAssets();
 }
@@ -41,10 +42,14 @@ void Game::mainLoop() {
 		deltaTime += elapsedTime;
 		if (gameState_ == inGame)
 			gameTime += elapsedTime;
-
-		if ((int)(gameTime.asSeconds() * 17) % 50 == 0 && enemy == NULL)
-			enemy = new Enemy();
-
+		
+		// Generates 1 enemy every 5 seconds.
+		for (int i = 0; i < 8; i++) {
+			if ((int)(gameTime.asSeconds() * 17) % 50 == 0 && enemy[i] == NULL) {
+				enemy[i] = new Enemy(rand() % 240, rand() % 500);
+				break;
+			}
+		}
 		while (deltaTime > TimePerFrame) {
 			// Reset deltaTime
 			deltaTime -= TimePerFrame;
@@ -55,7 +60,9 @@ void Game::mainLoop() {
 
 			// Update in game time
 			if (gameState_ == inGame)
-				pointsText.setString(to_string((int)(gameTime.asSeconds() * 17)));
+				pointsText.setString(to_string((int)(gameTime.asSeconds() * 17 * 0) + points));
+			else if (gameState_ == gameOver)
+				gameTime = sf::Time::Zero;
 
 			// Switch between different gamestates
 
@@ -79,11 +86,15 @@ void Game::handleEvent(sf::Event &event) {
 	// Change gamestates
 	switch (gameState_) {
 	case titleScreen:
-		if (sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
+		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
 			gameState_ = inGame;
 		break;
 	case inGame:
 		GummiShip->inputHandler(event);
+		break;
+	case gameOver:
+		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
+			gameState_ = titleScreen;
 		break;
 	default: break;
 	}
@@ -136,6 +147,14 @@ void Game::loadAssets() {
 	pressText.setOrigin(titleText.getGlobalBounds().width / 2, 0);
 	pressText.setPosition(276, 350);
 
+	GOText.setFont(scoreFont);
+	GOText.setColor(sf::Color(255, 255, 255, 255));
+	GOText.setCharacterSize(35);
+	GOText.setStyle(sf::Text::Italic);
+	GOText.setString("Gameover");
+	GOText.setOrigin(titleText.getGlobalBounds().width / 2, 0);
+	GOText.setPosition(250, 270);
+
 	pointsText.setFont(scoreFont);
 	pointsText.setColor(sf::Color(255, 200, 50, 255));
 	pointsText.setCharacterSize(28);
@@ -181,6 +200,16 @@ void Game::update() {
 		for (int i = 0; i < 2; i++)
 			if (easyBG[i].getPosition().y >= 0)
 				easyBG[i].setPosition(220, -17280);
+		for (int i = 0; i < 8; i++) {
+			if (enemy[i] != NULL)
+				if (enemy[i]->getY() > 650) {
+					gameState_ = gameOver;
+					reset();
+				}
+		}
+	}
+	else if (gameState_ == gameOver) {
+		
 	}
 	render();
 
@@ -198,21 +227,40 @@ void Game::render() {
 	case inGame:
 		for (int i = 0; i < 2; i++)
 			window.draw(easyBG[i]);
-		if (enemy != NULL)
-			if (enemy->getHP() != 0)
-				enemy->update(window, lazerList);
-			else {
-				delete enemy;
-				enemy = NULL;
-			}
+		for (int i = 0; i < 8; i++) {
+			if (enemy[i] != NULL)
+				if (enemy[i]->getHP() != 0)
+					enemy[i]->update(window, lazerList, points);
+				else {
+					delete enemy[i];
+					points += 100;
+					enemy[i] = NULL;
+				}
+		}
 		lazerList->update(window);
 		GummiShip->update(window, lazerList);
+		window.draw(pointsText);
+		window.draw(scoreText);
+		break;
+	case gameOver:
+		window.draw(GOText);
 		window.draw(pointsText);
 		window.draw(scoreText);
 		break;
 	default: break;
 	}
 	window.display();
+
+}
+
+void Game::reset() {
+	points = 0;
+	for (int i = 0; i < 8; i++) {
+		if (enemy[i] != NULL){
+			delete enemy[i];
+			enemy[i] = NULL;
+		}
+	}
 
 }
 

@@ -85,7 +85,7 @@ void Ship::update(sf::RenderWindow& window, LazerList* lazerList) {
 				lazerList->add(lazer2);
 			}
 		}
-		shootCounter = 8;
+		shootCounter = 7;
 		lazerSound.play();
 	}
 
