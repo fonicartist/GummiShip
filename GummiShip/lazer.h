@@ -1,0 +1,51 @@
+#pragma once
+
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+
+class Lazer {
+private:
+	bool hit;
+	int dmg;
+	sf::Vector2f velocity;
+
+	sf::Sprite sprite;
+	sf::Texture texture;
+
+	void loadAssets(int);
+
+public:
+	Lazer(float, float, float, int);
+	~Lazer();
+
+	void update();
+
+	float getX() {
+		return sprite.getPosition().x;
+	};
+	float getY() {
+		return sprite.getPosition().y;
+	};
+	void setX(float val) {
+		sprite.setPosition(val, getY());
+	};
+	void setY(float val) {
+		sprite.setPosition(getX(), val);
+	};
+
+	void changeHit() {
+		hit = true;
+	};
+	bool isHit() {
+		return hit;
+	};
+
+	sf::Sprite getSprite() {
+		return sprite;
+	}
+
+	sf::Vector2f getVelocity() {
+		return velocity;
+	}
+
+};

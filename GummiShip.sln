@@ -1,23 +1,31 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GummiShip", "GummiShip\GummiShip.vcxproj", "{B56694A0-0DE1-4A44-AACD-C287A113BB91}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GummiShip", "GummiShip\GummiShip.vcxproj", "{9E5EBE60-7064-4CC8-BE01-6B33CA15ED07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Win32 = Debug|Win32
-		Release|Win32 = Release|Win32
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B56694A0-0DE1-4A44-AACD-C287A113BB91}.Debug|Win32.ActiveCfg = Debug|Win32
-		{B56694A0-0DE1-4A44-AACD-C287A113BB91}.Debug|Win32.Build.0 = Debug|Win32
-		{B56694A0-0DE1-4A44-AACD-C287A113BB91}.Release|Win32.ActiveCfg = Release|Win32
-		{B56694A0-0DE1-4A44-AACD-C287A113BB91}.Release|Win32.Build.0 = Release|Win32
-		{B56694A0-0DE1-4A44-AACD-C287A113BB91}.Release|Win32.Deploy.0 = Release|Win32
+		{9E5EBE60-7064-4CC8-BE01-6B33CA15ED07}.Debug|x64.ActiveCfg = Debug|Win32
+		{9E5EBE60-7064-4CC8-BE01-6B33CA15ED07}.Debug|x64.Build.0 = Debug|Win32
+		{9E5EBE60-7064-4CC8-BE01-6B33CA15ED07}.Debug|x86.ActiveCfg = Debug|Win32
+		{9E5EBE60-7064-4CC8-BE01-6B33CA15ED07}.Debug|x86.Build.0 = Debug|Win32
+		{9E5EBE60-7064-4CC8-BE01-6B33CA15ED07}.Release|x64.ActiveCfg = Release|x64
+		{9E5EBE60-7064-4CC8-BE01-6B33CA15ED07}.Release|x64.Build.0 = Release|x64
+		{9E5EBE60-7064-4CC8-BE01-6B33CA15ED07}.Release|x86.ActiveCfg = Release|Win32
+		{9E5EBE60-7064-4CC8-BE01-6B33CA15ED07}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AED03103-2C65-46CF-A6D8-A33785AE383D}
 	EndGlobalSection
 EndGlobal
